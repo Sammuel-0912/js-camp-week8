@@ -149,7 +149,7 @@ function displayCart(cart) {
       console.log(`${index + 1} ${item.product.title}`);
       console.log(`數量: ${item.quantity}`);
       console.log(`單價: ${formatCurrency(item.product.price)}`);
-      console.log(`小計: ${formatCurrency(item.total)}`);
+      console.log(`小計: ${formatCurrency(item.quantity * item.product.price)}`);
     });
     console.log("--------------------");
     console.log("商品總計:", formatCurrency(cart.total));

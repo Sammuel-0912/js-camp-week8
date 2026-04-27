@@ -174,7 +174,7 @@ function displayOrders(orders) {
   // 商品明細：
   //   - 產品名稱 x 2（產品數量）
   // ========================================
-  const formattedCreate = formatDate(createAt);
+  
   if(orders.length === 0) {
     console.log("沒有訂單");
     return;
@@ -192,10 +192,10 @@ function displayOrders(orders) {
       console.log(`付款方式:${formattedOrder.user.payment}`);
       console.log(`訂單金額:${formattedOrder.total}`);
       console.log(`付款狀態:${formattedOrder.paid}`);
-      console.log(`建立時間:${formattedOrder.createdAt} (${formatOrder.daysAgo})`);
+      console.log(`建立時間:${formattedOrder.createdAt} (${formattedOrder.daysAgo})`);
       console.log("========================================");
       formattedOrder.products.forEach((product) => 
-        console.log(`${product.title} X ${formattedOrder.quantity}`)
+        console.log(`${product.title} X ${product.quantity}`)
       )
     })
 
