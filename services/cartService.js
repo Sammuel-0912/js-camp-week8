@@ -35,7 +35,7 @@ async function addProductToCart(productId, quantity) {
       const carts = await addToCart(productId, quantity);
       return { success: true, data: carts };
     } catch (error) {
-      console.error("加入購物車失敗", error.response?.data?.message || error.message);
+      return { success: true, error: error.message }
     }
   }
 }
@@ -57,9 +57,9 @@ async function updateProduct(cartId, quantity) {
   } else {
     try {
       const carts = await updateCartItem(cartId, quantity);
-      return  { success: true, data: carts };
+      return { success: true, data: carts };
     } catch (error) {
-      return {success: false, error: error.response?.data?.message || error.message};
+      return { success: false, error: error.response?.data?.message || error.message };
     }
   }
 
@@ -76,9 +76,9 @@ async function removeProduct(cartId) {
   // 回傳格式：{ success: true, data: ... } / { success: false, error: ... }
   try {
     const carts = await deleteCartItem(cartId);
-    return {success: true, data: carts};
+    return { success: true, data: carts };
   } catch (error) {
-    return {success: false, data: error.response?.data?.message || error.message }
+    return { success: false, data: error.response?.data?.message || error.message }
   }
 }
 
@@ -92,9 +92,9 @@ async function emptyCart() {
   // 回傳格式：{ success: true, data: ... }
   try {
     const carts = await clearCart();
-    return {success: true, data: carts};
+    return { success: true, data: carts };
   } catch (error) {
-    return {success: false, data: error.response?.data?.message || error.message };
+    return { success: false, data: error.response?.data?.message || error.message };
   }
 }
 
@@ -109,12 +109,12 @@ async function getCartTotal() {
   try {
     const cartData = await fetchCart();
     return {
-      total: cartData.total, 
-      finalTotal: cartData.finalTotal, 
+      total: cartData.total,
+      finalTotal: cartData.finalTotal,
       itemCount: cartData.carts.length
     }
   } catch (error) {
-    return {total: 0, finalTotal: 0, itemCount: 0};
+    return { total: 0, finalTotal: 0, itemCount: 0 };
   }
 }
 
@@ -137,7 +137,7 @@ function displayCart(cart) {
   // ----------------------------------------
   // 商品總計：NT$ 1,600
   // 折扣後金額：NT$ 1,600
-  if(!cart.carts || cart.carts.length === 0) {
+  if (!cart.carts || cart.carts.length === 0) {
     console.log("購物車是空的");
     return;
   } else {

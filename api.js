@@ -124,9 +124,15 @@ async function createOrder(userInfo) {
   try {
     const response = await axios.post(`${BASE_URL}/api/livejs/v1/customer/${API_PATH}/orders`, {
       "data": {
-        "user": userInfo
-      }
-    });
+              "user": {
+              "name": userInfo.name,
+              "tel": userInfo.tel,
+              "email": userInfo.email,
+              "address": userInfo.address,
+              "payment": userInfo.payment
+            },
+          },
+        });
     return response.data;
   } catch (error) {
     console.error("建立訂單失敗:", error.response?.data?.message || error.message);
@@ -199,7 +205,7 @@ async function deleteOrder(orderId) {
         authorization: ADMIN_TOKEN
       }
     });
-    return response.data.orders;
+    return response.data;
   } catch (error) {
     console.error("刪除訂單失敗:", error.response?.data?.message || error.message);
   }
