@@ -170,7 +170,7 @@ function displayOrders(orders) {
   //   - 產品名稱 x 2（產品數量）
   // ========================================
 
-  if (orders.length === 0) {
+  if (!orders || orders.length === 0) {
     console.log("沒有訂單");
     return;
   } else {
